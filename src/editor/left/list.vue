@@ -35,7 +35,11 @@ function load(url) {
 
 }
 
-fetchResource(Config.editorJsonUrl).then(res => data.list = res)
+fetchResource(Config.editorJsonUrl).then(res => {
+    console.log('获取到的场景列表:', res)
+    console.log('请求的URL:', Config.editorJsonUrl)
+    data.list = res.filter(item => item !== '二维码.json')
+})
 
 </script>
 
