@@ -35,7 +35,7 @@ const data = [
 
     { icon: 'set-up', title: '配置案例', component: List },
 
-    { icon: 'office-building', title: '建筑', component: Build },
+    { icon: 'office-building', title: '模型', component: Build },
 
     { icon: 'partly-cloudy', title: '天空盒', component: Sky },
 

@@ -9,14 +9,10 @@
                             style="color:rgb(255, 255, 255)">
                             <div style="width: 100%;display: flex;justify-content: space-between;">
                                 <span>{{ item.name }} </span>
-                                <span>
-                                    <el-popconfirm title="确定删除？" @confirm="() => delScene(item)">
-                                        <template #reference>
-                                            <el-icon style="color: aliceblue;">
-                                                <Close />
-                                            </el-icon>
-                                        </template>
-                                    </el-popconfirm>
+                                <span @click.stop="openDelConfirm(item)">
+                                    <el-icon style="color: aliceblue; vertical-align: middle;">
+                                        <Close />
+                                    </el-icon>
                                 </span>
                             </div>
                         </el-option>
@@ -96,7 +92,7 @@
 
 <script setup>
 import { ref, shallowReactive, watch } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import leftPanel from './leftPanel.vue'
 import rightPanel from './rightPanel.vue'
 import JSZip from 'jszip'
@@ -193,6 +189,24 @@ const uploadChange = file => {
 
 }
 
+function openDelConfirm(item) {
+    ElMessageBox.confirm(
+        '确定删除该场景吗？',
+        '警告',
+        {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    )
+        .then(() => {
+            delScene(item)
+        })
+        .catch(() => {
+            // 取消删除
+        })
+}
+
 function delScene(item) {
 
     const index = options.value.findIndex(i => i.name === item.name)
@@ -202,6 +216,14 @@ function delScene(item) {
         options.value.splice(index, 1)
 
         localStorage.removeItem(item.name)
+
+        if (emitEditor.sceneName === item.name) {
+
+            if (options.value.length > 0) emitEditor.sceneName = options.value[0].name
+
+            else emitEditor.sceneName = ''
+
+        }
 
         saveLocal()
 

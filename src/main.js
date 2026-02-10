@@ -17,4 +17,4 @@ app.use(router)
 
 app.mount('#app')
 
-// window.THREE_EDITOR_NOTIP = true
+window.THREE_EDITOR_NOTIP = true

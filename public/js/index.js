@@ -34490,9 +34490,7 @@ function Z0(i, e) {
   })(i, e);
 }
 function ax() {
-  var i = ["174516PDHurO", "9182952YptXrB", `欢迎使用THREE-EDITOR, 本产品永久免费使用。 
-Copyright (c) threehub.cn email:2586300277@qq.com All rights reserved. 
-不想显示这个提示请手动删除！`, "954508ggFgYg", "22689uXPcdB", "74gKWAuR", "310HUVyax", "12454409RFUErl", "150471cFTnfn", "12thSAZv", "25pCBFsG", "log", "7WFJJMU", "203373LCHRwt"];
+  var i = ["174516PDHurO", "9182952YptXrB", ``, "954508ggFgYg", "22689uXPcdB", "74gKWAuR", "310HUVyax", "12454409RFUErl", "150471cFTnfn", "12thSAZv", "25pCBFsG", "log", "7WFJJMU", "203373LCHRwt"];
   return (ax = function() {
     return i;
   })();

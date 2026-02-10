@@ -12,6 +12,8 @@ const threeBox = ref(null)
 
 const props = defineProps(['emitEditor', 'options'])
 
+let timer = null
+
 onMounted(() => (props.emitEditor.sceneName !== '') && createScene())
 
 function getEvent(e) {
@@ -37,6 +39,7 @@ function getEvent(e) {
 }
 
 function createScene(sceneParams) {
+    if (timer) clearInterval(timer)
 
     if (!sceneParams) {
 
@@ -78,7 +81,7 @@ function createScene(sceneParams) {
 
             webglRenderParams: { antialias: true, alpha: true, logarithmicDepthBuffer: true },
 
-            sceneParams
+            sceneParams: sceneParams || {}
 
         }
 
@@ -118,9 +121,32 @@ function createScene(sceneParams) {
 
     window.onresize = () => threeEditor.renderSceneResize()
 
+    // 监听模式变化（由于ThreeEditor内部模式变化没有抛出事件，这里采用轮询方式同步）
+    timer = setInterval(() => {
+        const { mode } = threeEditor.handler
+        const { transformControls } = threeEditor
+        let newMode = ''
+
+        if (mode == '选择') newMode = '选中'
+        else if (mode == '根选择') newMode = '根级'
+        else if (mode == '变换') {
+            if (transformControls.mode == 'translate') newMode = '平移'
+            else if (transformControls.mode == 'rotate') newMode = '旋转'
+            else if (transformControls.mode == 'scale') newMode = '缩放'
+        }
+        else if (mode == '场景绘制') newMode = '绘制'
+        else if (mode == '点击信息') newMode = '预览'
+
+        if (newMode && props.emitEditor.mode !== newMode) {
+            props.emitEditor.mode = newMode
+        }
+    }, 100)
 }
 
-onUnmounted(() => props.emitEditor.threeEditor?.destroySceneRender())
+onUnmounted(() => {
+    if (timer) clearInterval(timer)
+    props.emitEditor.threeEditor?.destroySceneRender()
+})
 
 props.emitEditor.createScene = createScene
 
