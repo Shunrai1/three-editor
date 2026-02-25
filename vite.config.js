@@ -1,16 +1,14 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
-
   plugins: [
     {
-
-      transformIndexHtml: html => {
-
-        if (process.env.NODE_ENV === 'production') {
-
-          html = html.replace(/<head>/, `<head>\n
+      transformIndexHtml: (html) => {
+        if (process.env.NODE_ENV === "production") {
+          html = html.replace(
+            /<head>/,
+            `<head>\n
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8697430839896878" crossorigin="anonymous"></script> 
           <script async src="https://www.googletagmanager.com/gtag/js?id=G-LKJQBJNGVF"></script>
           <script>
@@ -29,48 +27,42 @@ export default defineConfig({
               s.parentNode.insertBefore(hm, s);
             })();
             </script>
-          `)
-
+          `
+          );
         }
 
-        return html
-
-      }
+        return html;
+      },
     },
 
-    vue()
-
+    vue(),
   ],
 
   define: {
-
     __SITE_URLS__: {
+      doc: "https://z2586300277.github.io/three-editor/docs/",
 
-      doc: 'https://z2586300277.github.io/three-editor/docs/dist/',
+      example: "https://z2586300277.github.io/three-editor/#/example",
 
-      example: 'https://z2586300277.github.io/three-editor/dist/#/example',
+      community:
+        "https://z2586300277.github.io/three-cesium-examples/#/example",
 
-      community: 'https://z2586300277.github.io/three-cesium-examples/#/example',
+      editor: "https://z2586300277.github.io/three-editor/#/editor",
 
-      editor: 'https://z2586300277.github.io/three-editor/dist/#/editor',
+      github: "https://github.com/z2586300277/three-editor",
 
-      github: 'https://github.com/z2586300277/three-editor',
+      blog: "https://z2586300277.github.io/blog",
 
-      blog: 'https://z2586300277.github.io/blog',
+      home: "https://z2586300277.github.io/",
 
-      home: 'https://z2586300277.github.io/',
+      author: "https://github.com/z2586300277",
 
-      author: 'https://github.com/z2586300277',
-
-      wxPay: 'https://z2586300277.github.io/three-editor/dist/wx_pay.jpg',
-
+      wxPay: "https://z2586300277.github.io/three-editor/wx_pay.jpg",
     },
-
   },
 
   build: {
-
-    target: 'es2015',
+    target: "es2015",
 
     chunkSizeWarningLimit: 999999, // 最大打包体积
 
@@ -79,19 +71,15 @@ export default defineConfig({
     // copyPublicDir: false,
 
     cssCodeSplit: false, // css代码分割
-
   },
 
-  base: '/three-editor/dist',
+  base: "/three-editor/",
 
   server: {
-
     port: 7070,
 
     open: true,
 
-    host: '0.0.0.0'
-
-  }
-
-})
+    host: "0.0.0.0",
+  },
+});

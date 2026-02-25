@@ -1,36 +1,27 @@
-
-const Host =  '/three-editor/dist/files/' 
-
+const Host = "/three-editor/files/";
 
 export const fetchResource = (url) => {
-
-     return fetch(url + 'index.json').then(res => res.json())
-
-}
+  return fetch(url + "index.json").then((res) => res.json());
+};
 
 const _Config = {
+  skyUrl: "scene/",
 
-    skyUrl: 'scene/',
+  buildUrl: "resource/",
 
-    buildUrl: 'resource/',
+  editorJsonUrl: "editorJson/",
 
-    editorJsonUrl: 'editorJson/',
+  fontUrl: "font/",
 
-    fontUrl: 'font/',
+  channelUrl: "channels/",
 
-    channelUrl: 'channels/',
+  iconUrl: "icon/",
 
-    iconUrl: 'icon/',
-
-    videoUrl: 'video/'
-
-}
+  videoUrl: "video/",
+};
 
 export const Config = Object.keys(_Config).reduce((acc, key) => {
+  acc[key] = Host + _Config[key];
 
-    acc[key] = Host + _Config[key]
-
-    return acc
-
-}, {})
-
+  return acc;
+}, {});

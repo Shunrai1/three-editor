@@ -1,10 +1,11 @@
-# 🍃数字孪生 - 低代码 - 组态编辑器🍁
+# 🍃 数字孪生 - 低代码 - 组态编辑器 🍁
 
 ## 📋 项目说明
 
 ### 🔧 技术架构
+
 - **前端框架**: Vue 3 + Vite + Element Plus
-- **3D渲染引擎**: Three.js (核心库: three-editor-cores) - 用于编辑器核心功能
+- **3D 渲染引擎**: Three.js (核心库: three-editor-cores) - 用于编辑器核心功能
 - **代码编辑器**: CodeMirror 6 - 在线代码编辑运行
 - **数据存储**: IndexedDB (本地浏览器存储)
 - **部署方式**: 纯静态前端项目，部署在 GitHub Pages
@@ -13,14 +14,15 @@
 ### ✨ 前端功能模块
 
 #### 1. 🎨 三维低代码编辑器 (/editor)
+
 - **左侧资源面板**：
-  - 🏗️ 3D模型库管理（GLB/FBX/OBJ格式）
+  - 🏗️ 3D 模型库管理（GLB/FBX/OBJ 格式）
   - 🌌 天空盒/环境贴图管理
-  - 🔤 3D文字/字体资源
+  - 🔤 3D 文字/字体资源
   - 🖼️ 图片/贴图资源
   - 🎬 视频纹理资源
 - **中央场景编辑区**：
-  - 实时3D场景渲染
+  - 实时 3D 场景渲染
   - 模型拖拽放置
   - 场景交互操作
 - **右侧属性面板**：
@@ -29,24 +31,19 @@
   - 材质参数配置
 - **功能特性**：
   - 场景数据本地保存/加载（IndexedDB）
-  - 场景导出/导入（JSON格式）
+  - 场景导出/导入（JSON 格式）
   - 动画编辑（GSAP/曲线动画）
   - 事件系统
 
 #### 2. 💻 在线代码运行 (/codeMirror)
-- CodeMirror编辑器集成
-- JavaScript代码实时预览
-- Three.js/Cesium.js 代码在线编写和运行
-- **在线地址**: https://z2586300277.github.io/three-editor/dist/#/codeMirror
+
+- CodeMirror 编辑器集成
+- JavaScript 代码实时预览
+- Three.js 代码在线编写和运行
 
 #### 3. 📚 功能案例展示 (/example)
-- **Three.js案例**：着色器学习、模型加载、动画效果
-- **Cesium.js地图案例**（35+案例）：
-  - 📍 地图图层：高德、百度、天地图、ArcGIS、地形图
-  - 🎯 地图功能：点击事件、GeoJSON面、大量点/线/面渲染
-  - 📊 数据可视化：热力图、点聚合、飞线图表、CSS 2D弹窗
-- **编辑器案例**：快速入门、模型加载、场景管理
-- **案例在线地址**: https://z2586300277.github.io/three-editor/dist/#/example
+
+- **Three.js 案例**：着色器学习、模型加载、动画效果
 
 ---
 
@@ -66,7 +63,6 @@ three-editor-dev/
 │   ├── example/           # 案例展示页面
 │   ├── codes/             # 案例代码库
 │   │   ├── threejs/       # Three.js案例
-│   │   ├── cesiumjs/      # Cesium.js地图案例
 │   │   └── threeEditor/   # 编辑器使用案例
 │   ├── router/            # 路由配置
 │   └── main.js            # 应用入口
@@ -87,10 +83,12 @@ three-editor-dev/
 ## 🛠️ 本地开发
 
 ### 环境要求
+
 - Node.js 18+ （推荐 20.9.0）
 - pnpm（推荐）或 npm
 
 ### 安装依赖
+
 ```bash
 pnpm install
 # 或
@@ -98,14 +96,17 @@ npm install
 ```
 
 ### 启动开发服务器
+
 ```bash
 pnpm start
 # 或
 npm run start
 ```
+
 访问 http://localhost:7070
 
 ### 构建生产版本
+
 ```bash
 pnpm build
 # 或
@@ -113,9 +114,12 @@ npm run build
 ```
 
 ### 配置本地资源
+
 若想连接自己本地资源，目录结构需与 `public/files/` 目录结构一致，在 `src/editor/config.js` 中配置：
+
 ```javascript
-localStorage.setItem('dev_local_server_url', 'http://localhost:7070/three-editor/dist/files')
+localStorage.setItem(
+  "dev_local_server_url",
+  "http://localhost:7070/three-editor/files"
+);
 ```
-
-
